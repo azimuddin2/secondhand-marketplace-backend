@@ -16,14 +16,14 @@ router.get('/', auth('admin'), UserControllers.getAllUsers);
 
 router.get('/:id', auth('admin', 'user'), UserControllers.getSingleUser);
 
-router.patch(
+router.put(
   '/:email',
   auth('admin', 'user'),
   validateRequest(UserValidations.updateUserValidationSchema),
   UserControllers.updateUser,
 );
 
-router.patch(
+router.put(
   '/change-status/:id',
   auth('admin'),
   validateRequest(UserValidations.changeStatusValidationSchema),
