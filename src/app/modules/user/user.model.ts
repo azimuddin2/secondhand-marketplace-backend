@@ -35,7 +35,6 @@ const registerUserSchema = new Schema<TRegisterUser>(
     },
     phone: {
       type: String,
-      required: [true, 'Phone Number is required'],
       trim: true,
       validate: {
         validator: function (v) {
