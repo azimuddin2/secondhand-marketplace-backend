@@ -30,4 +30,6 @@ router.put(
   UserControllers.changeStatus,
 );
 
+router.delete('/:id', auth('admin'), UserControllers.deleteUser);
+
 export const UserRoutes = router;

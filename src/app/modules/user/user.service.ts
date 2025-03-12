@@ -63,10 +63,22 @@ const changeStatusIntoDB = async (id: string, payload: { status: string }) => {
   return result;
 };
 
+const deleteUserFromDB = async (id: string) => {
+  const isUserExists = await User.findById(id);
+
+  if (!isUserExists) {
+    throw new AppError(404, 'This user not found');
+  }
+
+  const result = await User.findByIdAndDelete(id);
+  return result;
+};
+
 export const UserServices = {
   registerUserIntoDB,
   getAllUsersFromDB,
   getSingleUserFromDB,
   updateUserIntoDB,
   changeStatusIntoDB,
+  deleteUserFromDB,
 };

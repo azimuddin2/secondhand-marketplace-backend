@@ -51,8 +51,9 @@ const registerUserSchema = new Schema<TRegisterUser>(
       },
       default: 'user',
     },
-    image: {
-      type: String,
+    images: {
+      type: [String],
+      required: true,
       trim: true,
     },
     address: {
@@ -67,7 +68,7 @@ const registerUserSchema = new Schema<TRegisterUser>(
       type: String,
       trim: true,
     },
-    eduction: {
+    education: {
       type: String,
       trim: true,
     },
@@ -84,6 +85,10 @@ const registerUserSchema = new Schema<TRegisterUser>(
       trim: true,
     },
     linkedInProfile: {
+      type: String,
+      trim: true,
+    },
+    facebookProfile: {
       type: String,
       trim: true,
     },

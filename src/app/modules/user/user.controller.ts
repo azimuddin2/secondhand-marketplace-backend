@@ -55,9 +55,21 @@ const changeStatus = catchAsync(async (req, res) => {
   const result = await UserServices.changeStatusIntoDB(id, req.body);
 
   sendResponse(res, {
-    statusCode: 201,
+    statusCode: 200,
     success: true,
     message: 'Status is updated successfully!',
+    data: result,
+  });
+});
+
+const deleteUser = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await UserServices.deleteUserFromDB(id);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'User is deleted successfully',
     data: result,
   });
 });
@@ -68,4 +80,5 @@ export const UserControllers = {
   getSingleUser,
   updateUser,
   changeStatus,
+  deleteUser,
 };

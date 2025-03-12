@@ -6,15 +6,16 @@ export type TRegisterUser = {
   password: string;
   phone?: string;
   role: 'admin' | 'user';
-  image?: string;
+  images: string[];
   address?: string;
   country?: string;
   city?: string;
-  eduction?: string;
+  education?: string;
   jobTitle?: string;
   company?: string;
   portfolio?: string;
   linkedInProfile?: string;
+  facebookProfile?: string;
   status: 'in-progress' | 'blocked';
   isDeleted: boolean;
 };
