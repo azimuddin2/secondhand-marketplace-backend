@@ -45,7 +45,7 @@ const listingSchema = new Schema<TListing>(
         values: Status,
         message: '{VALUE} is not valid',
       },
-      required: true,
+      default: 'available',
       trim: true,
     },
   },

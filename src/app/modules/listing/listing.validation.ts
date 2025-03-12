@@ -10,7 +10,6 @@ const createListingValidationSchema = z.object({
       .min(0, 'Product price cannot be less than 0'),
     condition: z.enum([...Condition] as [string, ...string[]]),
     userID: z.string({ required_error: 'User Id is required' }),
-    status: z.enum([...Status] as [string, ...string[]]),
   }),
 });
 

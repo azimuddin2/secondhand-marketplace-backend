@@ -21,6 +21,13 @@ const registerUserValidationSchema = z.object({
     role: z.enum(['admin', 'user']).default('user'),
     image: z.string().optional(),
     address: z.string().optional(),
+    country: z.string().optional(),
+    city: z.string().optional(),
+    eduction: z.string().optional(),
+    jobTitle: z.string().optional(),
+    company: z.string().optional(),
+    portfolio: z.string().optional(),
+    linkedInProfile: z.string().optional(),
     isBlocked: z.boolean().default(false),
   }),
 });
@@ -36,6 +43,13 @@ const updateUserValidationSchema = z.object({
     role: z.enum(['admin', 'user']).default('user').optional(),
     image: z.string().optional(),
     address: z.string().optional(),
+    country: z.string().optional(),
+    city: z.string().optional(),
+    eduction: z.string().optional(),
+    jobTitle: z.string().optional(),
+    company: z.string().optional(),
+    portfolio: z.string().optional(),
+    linkedInProfile: z.string().optional(),
   }),
 });
 

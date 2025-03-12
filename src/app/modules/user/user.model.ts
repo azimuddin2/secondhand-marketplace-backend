@@ -59,6 +59,34 @@ const registerUserSchema = new Schema<TRegisterUser>(
       type: String,
       trim: true,
     },
+    country: {
+      type: String,
+      trim: true,
+    },
+    city: {
+      type: String,
+      trim: true,
+    },
+    eduction: {
+      type: String,
+      trim: true,
+    },
+    jobTitle: {
+      type: String,
+      trim: true,
+    },
+    company: {
+      type: String,
+      trim: true,
+    },
+    portfolio: {
+      type: String,
+      trim: true,
+    },
+    linkedInProfile: {
+      type: String,
+      trim: true,
+    },
     status: {
       type: String,
       enum: UserStatus,
