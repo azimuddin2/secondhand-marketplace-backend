@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { OrderStatus } from './order.constant';
 
 const createOrderValidationSchema = z.object({
   body: z.object({
@@ -29,7 +30,14 @@ const updateOrderValidationSchema = z.object({
   }),
 });
 
+const changeOrderStatusValidationSchema = z.object({
+  body: z.object({
+    status: z.enum([...OrderStatus] as [string, ...string[]]),
+  }),
+});
+
 export const OrderValidations = {
   createOrderValidationSchema,
   updateOrderValidationSchema,
+  changeOrderStatusValidationSchema,
 };

@@ -15,4 +15,13 @@ router.post(
 
 router.get('/', auth('admin'), OrderControllers.getAllOrders);
 
+router.get('/my-orders', OrderControllers.getOrdersByEmail);
+
+router.put(
+  '/change-status/:id',
+  auth('admin'),
+  validateRequest(OrderValidations.changeOrderStatusValidationSchema),
+  OrderControllers.changeOrderStatus,
+);
+
 export const OrderRoutes = router;

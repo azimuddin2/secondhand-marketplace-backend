@@ -21,6 +21,7 @@ const createOrderIntoDB = async (payload: TOrder) => {
 
 const getAllOrdersFromDB = async (query: Record<string, unknown>) => {
   const orderQuery = new QueryBuilder(Order.find(), query)
+    .search(['buyerEmail'])
     .filter()
     .sort()
     .paginate()
@@ -32,7 +33,29 @@ const getAllOrdersFromDB = async (query: Record<string, unknown>) => {
   return { meta, result };
 };
 
+const changeOrderStatusIntoDB = async (
+  id: string,
+  payload: { status: string },
+) => {
+  const result = await Order.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
+const getOrdersByEmailFromDB = async (query: Record<string, unknown>) => {
+  const filter = { email: query.email };
+
+  const isEmailExists = await Order.findOne(filter);
+  if (!isEmailExists) {
+    throw new AppError(404, 'Order not found');
+  }
+
+  const result = await Order.find(filter);
+  return result;
+};
+
 export const OrderServices = {
   createOrderIntoDB,
   getAllOrdersFromDB,
+  changeOrderStatusIntoDB,
+  getOrdersByEmailFromDB,
 };
