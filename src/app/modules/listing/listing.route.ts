@@ -17,6 +17,8 @@ router.get('/', ListingControllers.getAllListings);
 
 router.get('/:id', ListingControllers.getSingleListing);
 
+router.get('/', auth('user'), ListingControllers.getListingsByEmail);
+
 router.put(
   '/:id',
   auth('admin', 'user'),

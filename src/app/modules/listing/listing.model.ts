@@ -39,6 +39,11 @@ const listingSchema = new Schema<TListing>(
       required: true,
       trim: true,
     },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     status: {
       type: String,
       enum: {

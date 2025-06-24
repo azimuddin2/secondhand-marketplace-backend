@@ -10,6 +10,7 @@ const createListingValidationSchema = z.object({
       .min(0, 'Product price cannot be less than 0'),
     condition: z.enum([...Condition] as [string, ...string[]]),
     userID: z.string({ required_error: 'User Id is required' }),
+    email: z.string({ required_error: 'Email is required' }),
   }),
 });
 
@@ -25,6 +26,7 @@ const updateListingValidationSchema = z.object({
       .optional(),
     condition: z.enum([...Condition] as [string, ...string[]]).optional(),
     userID: z.string({ required_error: 'User Id is required' }).optional(),
+    email: z.string({ required_error: 'Email is required' }).optional(),
     status: z.enum([...Status] as [string, ...string[]]).optional(),
   }),
 });

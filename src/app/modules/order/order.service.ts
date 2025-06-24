@@ -42,15 +42,19 @@ const changeOrderStatusIntoDB = async (
 };
 
 const getOrdersByEmailFromDB = async (query: Record<string, unknown>) => {
-  const filter = { email: query.email };
+  const email = query.email as string;
 
-  const isEmailExists = await Order.findOne(filter);
-  if (!isEmailExists) {
-    throw new AppError(404, 'Order not found');
+  if (!email) {
+    throw new AppError(400, 'Email is required');
   }
 
-  const result = await Order.find(filter);
-  return result;
+  const orders = await Order.find({ buyerEmail: email });
+
+  if (!orders.length) {
+    throw new AppError(404, 'No orders found for this email');
+  }
+
+  return orders;
 };
 
 export const OrderServices = {

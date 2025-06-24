@@ -39,6 +39,22 @@ const getSingleListingFromDB = async (id: string) => {
   return listing;
 };
 
+const getListingsByEmailFromDB = async (query: Record<string, unknown>) => {
+  const email = query.email as string;
+
+  if (!email) {
+    throw new AppError(400, 'User not found');
+  }
+
+  const Listings = await Listing.find({ email: email });
+
+  if (!Listings.length) {
+    throw new AppError(404, 'No Listing found for this email');
+  }
+
+  return Listings;
+};
+
 const updateListingIntoDB = async (id: string, payload: Partial<TListing>) => {
   const isListingExists = await Listing.findById(id);
 
@@ -69,6 +85,7 @@ export const ListingServices = {
   createListingIntoDB,
   getAllListingsFromDB,
   getSingleListingFromDB,
+  getListingsByEmailFromDB,
   updateListingIntoDB,
   deleteListingFromDB,
 };

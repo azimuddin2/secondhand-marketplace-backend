@@ -11,5 +11,6 @@ export type TListing = {
   condition: TCondition;
   images: string[];
   userID: Types.ObjectId;
+  email: string;
   status: TStatus;
 };

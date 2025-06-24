@@ -37,6 +37,17 @@ const getSingleListing = catchAsync(async (req, res) => {
   });
 });
 
+const getListingsByEmail = catchAsync(async (req, res) => {
+  const result = await ListingServices.getListingsByEmailFromDB(req.query);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Listings retrieved successfully',
+    data: result,
+  });
+});
+
 const updateListing = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await ListingServices.updateListingIntoDB(id, req.body);
@@ -65,6 +76,7 @@ export const ListingControllers = {
   createListing,
   getAllListings,
   getSingleListing,
+  getListingsByEmail,
   updateListing,
   deleteListing,
 };
