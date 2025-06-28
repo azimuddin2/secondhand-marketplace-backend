@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { TListing } from './listing.interface';
-import { Condition, Status } from './listing.constant';
+import { Condition, ListingCategory, Status } from './listing.constant';
 
 const listingSchema = new Schema<TListing>(
   {
@@ -8,6 +8,14 @@ const listingSchema = new Schema<TListing>(
       type: String,
       required: true,
       trim: true,
+    },
+    category: {
+      type: String,
+      required: [true, 'Category is required'],
+      enum: {
+        values: ListingCategory,
+        message: '{VALUE} is not valid',
+      },
     },
     description: {
       type: String,
