@@ -1,9 +1,10 @@
 import { z } from 'zod';
-import { Condition, Status } from './listing.constant';
+import { Condition, ListingCategory, Status } from './listing.constant';
 
 const createListingValidationSchema = z.object({
   body: z.object({
     title: z.string({ required_error: 'Title is required' }),
+    category: z.enum([...ListingCategory] as [string, ...string[]]),
     description: z.string({ required_error: 'Description is required' }),
     price: z
       .number({ required_error: 'Price is required' })
@@ -17,6 +18,7 @@ const createListingValidationSchema = z.object({
 const updateListingValidationSchema = z.object({
   body: z.object({
     title: z.string({ required_error: 'Title is required' }).optional(),
+    category: z.enum([...ListingCategory] as [string, ...string[]]).optional(),
     description: z
       .string({ required_error: 'Description is required' })
       .optional(),
